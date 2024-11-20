@@ -4,9 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puzzle Heroes</title>
+    <!-- inport font from google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-
+    <!-- welcome and game menu -->
+    <div class="main">
+        <div class="title">
+            <h1>puzzle heros</h1>
+        </div>
+        <div class="form-container">
+            <form action="">
+                <div class="form-gruop">
+                    <label for="nick">Nickname</label>
+                    <input type="text" name="nick" id="nick" placeholder="Nickname" required>
+                </div> 
+                <div class="form-gruop">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" placeholder="some@one.com" required>
+                </div>
+                <div class="form-gruop">
+                    <label for="level">Difficulty</label>
+                    <select name="level" id="level" required>
+                        <option value="3">Easy</option>
+                        <option value="4">Normal</option>
+                        <option value="5">Hard</option>
+                    </select>
+                </div>  
+                <div class="form-gruop">
+                    <input type="submit" value="Play">
+                </div> 
+            </form>
+        </div>
+    </div>
 
     
     <script src="/js/app.js">
