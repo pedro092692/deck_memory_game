@@ -2,7 +2,7 @@ body{
     font-family: "Montserrat",  sans-serif;
     background-image: url('../img/bg/bg.png');
     background-repeat: no-repeat;
-    background-size: fill;
+    background-size: cover;
 }
 
 /* estyle for main */
@@ -22,16 +22,68 @@ body{
     display: flex;
     flex: 1;
     align-items: center;
-
 }
 
 .title h1{
     color: #fff;
     font-size: 250px;
-    font-weight: 900;
+    font-weight: 800;
     line-height: 85%;
     letter-spacing: 0%;
     text-transform: capitalize;
 }
 
 /* end title styles */
+
+/* sytles for form */
+
+/* end styles for form */
+
+.main .form-container{
+    display: flex;
+    flex: 1;
+    padding: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container form{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(50, 56, 57, 0.45);
+    width: 100%;
+    gap: 40px;
+    padding: 48px 32px;
+    border-radius: 24px;
+}
+
+form .form-gruop{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-gruop label{
+    color: #fff;
+    font-weight: 800;
+    font-size: 32px;
+
+}
+
+.form-gruop input, select{
+    height: 64px;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 24px;
+}
+
+.form-container input[type=submit]{
+    background-color: #FF0000;
+    color: black;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* end styles for form */
