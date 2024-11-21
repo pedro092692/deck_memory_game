@@ -2,46 +2,105 @@
 deck = [ 
     {
         name: 'super-man',
-        img: 'img/super-man.jpg'
+        img: 'img/heros/super-man.png'
     },
     {
         name: 'batman',
-        img: 'img/batman.jpg',
+        img: 'img/heros/batman.png',
     },
     {
         name: 'spider-man',
-        img: 'img/spider-man.jpg'
+        img: 'img/heros/spider-man.png'
     },
     {
         name: 'wonder-woman',
-        img: 'img/wonder-woman.jpg'
+        img: 'img/heros/wonder-woman.png'
     },
     {
         name: 'iron-man',
-        img: 'img/iron-man.jpg'
+        img: 'img/heros/iron-man.png'
     },
     {
         name: 'captain-america',
-        img: 'img/captain-america.jpg'
+        img: 'img/heros/captain-america.png'
     },
     {
         name: 'thor',
-        img: 'img/thor.jpg'
+        img: 'img/heros/thor.png'
     },
     {
         name: 'hulk',
-        img: 'img/hulk.jpg'
+        img: 'img/heros/hulk.png'
     },
     {
         name: 'black-phanter',
-        img: 'img/black-phanter.jpg'
+        img: 'img/heros/black-phanter.png'
     },
     {
         name: 'captain-marvel',
-        img: 'img/captain-marvel.jpg'
+        img: 'img/heros/captain-marvel.png'
     },
     {
         name: 'deadpool',
-        img: 'img/deadpool.jpg'
+        img: 'img/heros/deadpool.png'
     }
 ]
+
+wildcard = [
+    {
+        name: 'one shot',
+        img: 'img/heros/deadpool'
+    }
+]
+
+// shuffle deck 
+function shuffle(array){
+    for(let i = array.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * i);
+        let temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+
+//start new deck of cards based on game difficulty
+function new_deck(array, difficulty){
+    let = new_deck_card = [];
+    if(difficulty <= 7){
+        for(let i = 0; i<difficulty; i++){
+            new_deck_card.push(array[i]);
+        }
+        return new_deck_card;
+    }
+    return array;
+}
+
+//duplicate deck function 
+function duplicate_deck(array){
+    let new_deck = [];
+    for(item of array){
+        new_deck.push(item);
+        new_deck.push(item);
+    }
+    return new_deck;
+}
+
+deck = shuffle(duplicate_deck(new_deck(shuffle(deck), difficulty)));
+
+// draw the deck
+function draw_the_board(){
+    const board = document.getElementById('deck');
+    let cards = '';
+    for(let card of deck){
+        cards += `<div class='${card.name}'> <img src='${card.img}' alt='${card.name}' height='110'> </div>`;
+    }
+    board.innerHTML = cards;
+}
+
+//game events
+
+//deal cards
+draw_the_board();
+
+

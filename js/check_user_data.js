@@ -1,7 +1,9 @@
+var difficulty 
+
 //check usar data
 function check_user_data(){
     // check difficuly
-    if(sessionStorage.getItem('difficulty') == null || parseInt(sessionStorage.getItem('difficulty')) < 3 || parseInt(sessionStorage.getItem('difficulty')) > 5){
+    if(sessionStorage.getItem('difficulty') == null || parseInt(sessionStorage.getItem('difficulty')) < 4 || parseInt(sessionStorage.getItem('difficulty')) > 11){
         //raise an error 
         sessionStorage.setItem('d-error', 'invalid difficulty');
         return false
@@ -12,6 +14,7 @@ function check_user_data(){
         sessionStorage.setItem('error', 'No user nick');
         return false;
     }
+    difficulty = parseInt(sessionStorage.getItem('difficulty'));
     return true;
 }
 
