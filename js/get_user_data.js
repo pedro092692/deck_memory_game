@@ -22,6 +22,19 @@ function load_content(){
     difficulty = document.getElementById('level');
     form = document.getElementById('form');
 
+    // of error if user try to access to game.html without data
+    if(sessionStorage.getItem('error')){
+        let error = document.getElementById('nick-error');
+        error.style.display = 'block';
+        nickname.focus();
+        sessionStorage.removeItem('error');
+    }else if(sessionStorage.getItem('d-error')){
+        let error = document.getElementById('difficulty-error');
+        error.style.display = 'block';
+        difficulty.focus();
+        sessionStorage.removeItem('d-error');
+    }
+
     // check form before submit
     form.addEventListener('submit', check_form);
 }
@@ -41,11 +54,12 @@ function check_form(event){
         error.innerHTML = '';
         error.innerText = 'The nickname cannot start with a number.';
         prevent_form(event, 'nick-error', error);
-    }
-
-
+    } 
+        
+    // set usar data in session variables
+    set_user_data(nickname, email, difficulty);
+    return true;
     
-
 }
 
 // this function prevents send form and focus on element with errors.
@@ -57,7 +71,16 @@ function prevent_form(event, error_id, form_element){
     return false;
 }
 
+
+// set usar data in session variables 
+function set_user_data(nickname, email, difficulty){
+    sessionStorage.setItem('nickname', nickname.value);
+    sessionStorage.setItem('email', email.value);
+    sessionStorage.setItem('difficulty', parseInt(difficulty.value));
+}
+
+
+
 // Load content
 load_content();
-
 
