@@ -71,7 +71,7 @@ form .form-gruop{
 }
 
 .form-gruop input, select{
-    height: 64px;
+    height: 48px;
     border-radius: 8px;
     padding: 8px;
     font-size: 24px;
@@ -79,10 +79,15 @@ form .form-gruop{
 
 .form-container input[type=submit]{
     background-color: #FF0000;
-    color: black;
+    color: #fff;
     font-weight: 600;
     border: none;
     cursor: pointer;
+}
+
+.form-gruop p{
+    color: red;
+    display: none;
 }
 
 
