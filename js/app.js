@@ -1,5 +1,8 @@
 var marked_cards = [];
 var id_hide;
+const traps = ['lost_turn', 're-shuffle', 'lost-points'];
+var board = document.getElementById('deck');
+var id_reshuffle;
 
 //adjust board size based on difficulty
 function board_size(difficulty){
@@ -22,7 +25,6 @@ function board_size(difficulty){
 
 // draw the deck
 function draw_the_board(){
-    const board = document.getElementById('deck');
     let cards = '';
     for(let card of deck){
         cards += `<div class='card'>
@@ -50,19 +52,28 @@ function mark_card(event){
         let card = event.target.children[0];
         // add card to marked cards 
         marked_cards.push(card);
-        console.log('length of marked', marked_cards.length)
         // reveal card
         card.style.display = 'flex';
         //remove mark_card listener event
         card.parentElement.removeEventListener('click', mark_card);
         
-        check_marked_cards();
+        check_marked_cards(card);
     }
 }
 
 // check if two cards are marked
-function check_marked_cards(){
-    console.log(marked_cards);
+function check_marked_cards(card){
+    // check for traps 
+    if(traps.includes(card.classList[0])){
+        // hide card first card
+        if(marked_cards.length > 1){
+            marked_cards[0].style.display = 'none';
+            marked_cards[0].parentElement.addEventListener('click', mark_card);
+        }
+        //activate trap
+        console.log('activate trap');
+        activate_trap(card.classList[0], card);
+    }
     if(marked_cards.length == 2){
         check_twins();
     }
@@ -75,7 +86,7 @@ function check_twins(){
     if(card_1[0] == card_2[0]){
         console.log('twins');
     }else{
-        id_hide = setInterval(hide_reveal, 2000);
+        id_hide = setInterval(hide_reveal, 800);
         
     }
 
@@ -92,6 +103,39 @@ function hide_reveal(){
     clearInterval(id_hide);
     marked_cards = [];
     console.log('cleaning');
+
+}
+
+// re shuffle board
+function reshuffle(){
+    let cards = Array.from(board.getElementsByClassName('card'));
+    cards = shuffle(cards);
+    //clean board 
+    board.innerHTML = '';
+    // shuffle board
+    cards.forEach(card => board.appendChild(card));
+    clearInterval(id_reshuffle);
+}
+
+// set trap to the game 
+function activate_trap(trap, card){
+    switch(trap){
+        case 'lost_turn':
+            console.log('-1 turn');
+            break;
+
+        case 're-shuffle':
+            console.log('reshuffle');
+            id_reshuffle = setInterval(reshuffle, 800);
+            break;
+
+        case 'lost-points':
+            console.log('lost 1 points');
+    }
+
+    card.parentElement.removeEventListener('click', mark_card);
+    // clear marked cards
+    marked_cards = [];
 
 }
 
