@@ -4,11 +4,15 @@
 https://github.com/pedro092692/deck_memory_game
 */
 
-var play_button
-var nickname 
-var difficulty 
-var email 
-var form
+var play_button;
+var nickname;
+var difficulty;
+var email;
+var avatar_image = document.getElementById('avatarImage');
+var avatar = document.getElementById('avatar');
+var item_img;
+var form;
+
 
 /*
  * load content 
@@ -37,6 +41,24 @@ function load_content(){
 
     // check form before submit
     form.addEventListener('submit', check_form);
+
+    //add drag function to avatar images
+    let avatar_items = document.getElementsByClassName('avatar-img');
+    for(let item of avatar_items){
+        item.addEventListener('dragstart', move_avatar);
+    }
+    avatar.addEventListener('dragover', e=>{e.preventDefault()});
+    avatar.addEventListener('drop', change_avatar);
+}
+
+//move avatar function 
+function move_avatar(event){
+    item_img = event.target;
+}
+
+//change avatar image function 
+function change_avatar(){
+    avatar_image.src = item_img.src;
 }
 
 
@@ -55,8 +77,8 @@ function check_form(event){
         error.innerText = 'The nickname cannot start with a number.';
         prevent_form(event, 'nick-error', error);
     } 
-        
-    // set usar data in session variables
+   
+    // set user data in session variables
     set_user_data(nickname, email, difficulty);
     return true;
     
@@ -77,7 +99,11 @@ function set_user_data(nickname, email, difficulty){
     sessionStorage.setItem('nickname', nickname.value);
     sessionStorage.setItem('email', email.value);
     sessionStorage.setItem('difficulty', parseInt(difficulty.value));
+    sessionStorage.setItem('avatar', avatar_image.src);
 }
+
+
+
 
 
 

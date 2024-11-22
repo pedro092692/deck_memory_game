@@ -37,8 +37,6 @@ body{
 
 /* sytles for form */
 
-/* end styles for form */
-
 .main .form-container{
     display: flex;
     flex: 1;
@@ -63,11 +61,14 @@ form .form-gruop{
     gap: 16px;
 }
 
-.form-gruop label{
+.form-gruop label, h2{
     color: #fff;
     font-weight: 800;
     font-size: 32px;
 
+}
+.avatar-text{
+    margin-bottom: 16px;
 }
 
 .form-gruop input, select{
@@ -88,6 +89,44 @@ form .form-gruop{
 .form-gruop p{
     color: red;
     display: none;
+}
+
+/*  avatars */
+form .avatar-container{
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    flex-wrap: nowrap;
+}  
+
+.avatar-container .avatargrid{
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.avatar-container .avatarItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.avatargrid .avatar-img{
+    width: 50px;
+    cursor: pointer;
+}
+
+.avatar-container .selected-avatar{
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 8px;
+
 }
 
 

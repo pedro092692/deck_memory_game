@@ -3,6 +3,8 @@ var nickname;
 var score = 0;
 var turns = 0;
 var board = document.getElementById('deck');
+var avatar_thumb = document.getElementById('avatar_img');
+var avatar_img;
 
 //check usar data
 function check_user_data(){
@@ -16,6 +18,7 @@ function check_user_data(){
             score = localStorage.getItem('score');
             turns = localStorage.getItem('turns');
             board = localStorage.getItem('board');
+            avatar_img = localStorage.getItem('avatar');
             load_user_data();
             return true;
         }
@@ -33,7 +36,7 @@ function check_user_data(){
     // set user data variables
     difficulty = parseInt(sessionStorage.getItem('difficulty'));
     nickname = sessionStorage.getItem('nickname');
-
+    avatar_img = sessionStorage.getItem('avatar');
     //set turns base on difficulty
     switch(difficulty){
         case 4:
@@ -58,10 +61,11 @@ function check_user_data(){
 
 // load user data in global variables
 function load_user_data(){
-    let = nick_input = document.getElementById('nick');
-    let = turns_input = document.getElementById('turns');
+    let nick_input = document.getElementById('nick');
+    let turns_input = document.getElementById('turns');
     nick_input.value = nickname;
-    turns_input.value = turns
+    turns_input.value = turns;
+    avatar_thumb.src = avatar_img;
 }
 
 //save varibles into localstorage
@@ -71,6 +75,7 @@ function save_game(nickname, board, score, turns, difficulty){
     localStorage.setItem('score', score);
     localStorage.setItem('turns', turns);
     localStorage.setItem('difficulty', difficulty);
+    localStorage.setItem('avatar', avatar_img);
 }
 
 
