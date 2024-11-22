@@ -67,7 +67,6 @@ function random_number(max){
     return Math.floor(Math.random() * max);
 }
 
-
 // shuffle deck 
 function shuffle(array){
     for(let i = array.length - 1; i > 0; i--){
@@ -82,8 +81,8 @@ function shuffle(array){
 //start new deck of cards based on game difficulty
 function new_deck(array, difficulty){
     let = new_deck_card = [];
-    if(difficulty <= 7){
-        for(let i = 0; i<difficulty; i++){
+    if(parseInt(difficulty) <= 7){
+        for(let i = 0; i<parseInt(difficulty); i++){
             new_deck_card.push(array[i]);
         }
         return new_deck_card;

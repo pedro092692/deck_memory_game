@@ -1,9 +1,10 @@
 var marked_cards = [];
 var id_hide;
 const traps = ['lost_turn', 're-shuffle', 'lost-points'];
-var board = document.getElementById('deck');
 var id_reshuffle;
 var twins = 0;
+
+
 
 //adjust board size based on difficulty
 function board_size(difficulty){
@@ -27,6 +28,7 @@ function board_size(difficulty){
 // draw the deck
 function draw_the_board(){
     let cards = '';
+    let board = document.getElementById('deck');
     for(let card of deck){
         cards += `<div class='card'>
                     <div class='${card.name}'> <img src='${card.img}' alt='${card.name}' height='110'> </div>
