@@ -1,9 +1,50 @@
+/* body */
+body{
+    background-image: url('../img/bg/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Montserrat", sans-serif;
+    height: 100vh;
+    padding: 24px 16px;
+}
+/* end body */
+
+/* main */
+main{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    height: 85%;
+    margin-bottom: 24px;
+}
+/* end main */
+
+
+/* footer */
+footer{
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 800;
+    background-color: rgba(50, 56, 57, 0.25);
+    border-radius: 8px;
+}
+/* end footer */
+
+
 /* grid of cards */
+
 main .deck{
+    grid-column: 1/4;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    place-items: center;
     gap: 16px;
+    background-color: rgba(50, 56, 57, 0.45);
+    border-radius: 16px;
 }
 
 main .card{
@@ -33,3 +74,73 @@ main .card{
 }
 
 /* end grid of cards */
+
+/* score panel */
+main .score-panel{
+    grid-column: auto;
+    background-color: rgba(234, 234, 234, 0.45);
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.score-panel form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+form .item_form{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+/* style for avatar inpunt */
+.item_form:first-child{
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+}
+
+form img{
+    height: 43px;
+    background-color: #999999;
+    border-radius: 8px 0px 0px 8px;
+    padding: 2px 4px;
+}
+
+input{
+    flex: 1;
+    display: inline;
+    border: 1px solid #BDBDBD;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.item_form:first-child input{
+    border-radius: 0 8px 8px 0;
+}
+
+/* end score panel */
+
+
+/* media queries */
+@media screen and (max-width: 950px){
+    main{
+        grid-template-columns: 1fr;
+    }
+    
+    #deck{
+        height: auto;
+    }
+
+    .score-panel{
+        grid-column: 1/4;
+        height: auto;
+    }
+
+}
