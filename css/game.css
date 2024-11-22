@@ -29,6 +29,7 @@ main .card{
     background-image: url('../img/cards/card\ texture\ 2.png');
     background-position: center;
     background-size: cover;
+    display: none;
 }
 
 /* end grid of cards */
