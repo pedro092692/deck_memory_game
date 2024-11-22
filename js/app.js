@@ -3,6 +3,7 @@ var id_hide;
 const traps = ['lost_turn', 're-shuffle', 'lost-points'];
 var board = document.getElementById('deck');
 var id_reshuffle;
+var twins = 0;
 
 //adjust board size based on difficulty
 function board_size(difficulty){
@@ -85,6 +86,12 @@ function check_twins(){
     let card_2 = marked_cards[1].classList;
     if(card_1[0] == card_2[0]){
         console.log('twins');
+        //remove listener click to twins cards 
+        marked_cards.forEach(card => card.removeEventListener('click', mark_card));
+        // clear marked cards
+        marked_cards = [];
+        console.log('+ 2 points');
+        twins += 1;
     }else{
         id_hide = setInterval(hide_reveal, 800);
         
