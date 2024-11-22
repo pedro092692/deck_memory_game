@@ -14,6 +14,7 @@ function check_user_data(){
         sessionStorage.setItem('error', 'No user nick');
         return false;
     }
+    
     difficulty = parseInt(sessionStorage.getItem('difficulty'));
     return true;
 }
