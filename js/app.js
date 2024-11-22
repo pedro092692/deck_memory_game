@@ -3,8 +3,13 @@ var id_hide;
 const traps = ['lost_turn', 're-shuffle', 'lost-points'];
 var id_reshuffle;
 var twins = 0;
+var score = 0;
 
-
+//load highscore
+function set_highscore(){
+    let footer = document.getElementById('footer');
+    footer.innerHTML += `HighScore: ${localStorage.getItem('highscore')}`;
+}
 
 //adjust board size based on difficulty
 function board_size(difficulty){
@@ -94,6 +99,10 @@ function check_twins(){
         marked_cards = [];
         console.log('+ 2 points');
         twins += 1;
+        //add score 
+        add_score();
+        // check for game over 
+        game_over();
     }else{
         id_hide = setInterval(hide_reveal, 800);
         
@@ -112,6 +121,9 @@ function hide_reveal(){
     clearInterval(id_hide);
     marked_cards = [];
     console.log('cleaning');
+    lost_turn();
+    //check game over
+    game_over();
 
 }
 
@@ -131,15 +143,19 @@ function activate_trap(trap, card){
     switch(trap){
         case 'lost_turn':
             console.log('-1 turn');
+            lost_turn();
             break;
 
         case 're-shuffle':
             console.log('reshuffle');
             id_reshuffle = setInterval(reshuffle, 800);
+            lost_turn();
             break;
 
         case 'lost-points':
             console.log('lost 1 points');
+            score -= 2;
+            score_input.value = score;
     }
 
     card.parentElement.removeEventListener('click', mark_card);
@@ -148,6 +164,39 @@ function activate_trap(trap, card){
 
 }
 
+//function lost turn 
+function lost_turn(){
+    turns -= 1;
+    turns_input.value = turns;
+}
+
+//function add score 
+function add_score(){
+    score += 2;
+    score_input.value = score;
+}
+
+
+//game over function
+function game_over(){
+    if(turns == 0 || twins == difficulty){
+        twins = 0
+        marked_cards = []
+        //save highscore
+        if(score > localStorage.getItem('highscore')){
+            localStorage.setItem('highscore', score);
+        }
+        show_game_over_screen();
+    }
+}
+
+//show game over screen
+function show_game_over_screen(){
+    document.getElementById('end_game').classList.add('end-game-color');
+    document.getElementById('end_game').style.display = "flex";
+    document.getElementById('deck').style.display = 'none';
+    document.getElementById('new_game').addEventListener('click', (e)=>location.reload());
+}
 
 //adjust board size
 board_size(difficulty);
@@ -157,5 +206,7 @@ draw_the_board();
 
 //game events
 set_game_events();
+
+set_highscore();
 
 
