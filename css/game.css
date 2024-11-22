@@ -6,4 +6,29 @@ main .deck{
     gap: 16px;
 }
 
+main .card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 90px;
+    height: 130px;
+    border-radius: 8px;
+    background-image: url('../img/cards/card\ texture.png');
+    background-position: center;
+    background-size: cover;
+
+}
+
+.card div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 130px;
+    background-image: url('../img/cards/card\ texture\ 2.png');
+    background-position: center;
+    background-size: cover;
+}
+
 /* end grid of cards */
