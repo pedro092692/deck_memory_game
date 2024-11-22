@@ -43,23 +43,26 @@ function set_game_events(){
 }
 
 
-function mark_card(event){
-    //access to the hero card
-    let card = event.target.children[0];
-    // add card to marked cards 
-    marked_cards.push(card);
-    // reveal card
-    card.style.display = 'flex';
-    //remove mark_card listener event
-    card.parentElement.removeEventListener('click', mark_card);
-    
 
-    check_marked_cards();
-    
+function mark_card(event){
+    if(marked_cards.length !=2){
+        //access to the hero card
+        let card = event.target.children[0];
+        // add card to marked cards 
+        marked_cards.push(card);
+        console.log('length of marked', marked_cards.length)
+        // reveal card
+        card.style.display = 'flex';
+        //remove mark_card listener event
+        card.parentElement.removeEventListener('click', mark_card);
+        
+        check_marked_cards();
+    }
 }
 
 // check if two cards are marked
 function check_marked_cards(){
+    console.log(marked_cards);
     if(marked_cards.length == 2){
         check_twins();
     }
@@ -72,8 +75,7 @@ function check_twins(){
     if(card_1[0] == card_2[0]){
         console.log('twins');
     }else{
-        id_hide = setInterval(hide_reveal, 1000);
-        
+        id_hide = setInterval(hide_reveal, 2000);
         
     }
 
@@ -89,6 +91,7 @@ function hide_reveal(){
     //clear time interval
     clearInterval(id_hide);
     marked_cards = [];
+    console.log('cleaning');
 
 }
 
